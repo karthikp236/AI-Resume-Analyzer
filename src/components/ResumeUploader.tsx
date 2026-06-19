@@ -6,7 +6,6 @@ import API from "../services/api";
 import ATSScore from "./ATSScore";
 import MatchPercentage from "./MatchPercentage";
 import Skills from "./Skills";
-import Suggestions from "./Suggestions";
 
 function ResumeUploader() {
   const [file, setFile] =
@@ -129,39 +128,88 @@ function ResumeUploader() {
           />
 
           <div
-            className="
-              border-2
-              border-dashed
-              border-cyan-500/50
-              rounded-2xl
-              p-8
-              text-center
-              bg-slate-950
-            "
-          >
-            <Upload
-              size={40}
-              className="mx-auto mb-4 text-cyan-400"
-            />
+  className="
+    border-2
+    border-dashed
+    border-cyan-500/40
+    rounded-3xl
+    p-10
+    text-center
+    bg-slate-950
+    hover:border-cyan-400
+    transition
+  "
+>
+  <Upload
+    size={50}
+    className="mx-auto text-cyan-400 mb-5"
+  />
 
-            <input
-              type="file"
-              accept=".pdf"
-              onChange={(e) =>
-                setFile(
-                  e.target.files?.[0] || null
-                )
-              }
-              className="text-slate-300"
-            />
+  <h3 className="text-xl font-semibold mb-2">
+    Upload Your Resume
+  </h3>
 
-            {file && (
-              <p className="mt-4 text-cyan-300">
-                {file.name}
-              </p>
-            )}
-          </div>
+  <p className="text-slate-400 mb-6">
+    PDF format only
+  </p>
 
+  <label
+    htmlFor="resume-upload"
+    className="
+      inline-block
+      cursor-pointer
+      px-6
+      py-3
+      rounded-xl
+      bg-gradient-to-r
+      from-cyan-500
+      to-blue-600
+      text-white
+      font-semibold
+      hover:opacity-90
+      transition
+    "
+  >
+    Choose Resume
+  </label>
+
+  <input
+    id="resume-upload"
+    type="file"
+    accept=".pdf"
+    className="hidden"
+    onChange={(e) =>
+      setFile(
+        e.target.files?.[0] || null
+      )
+    }
+  />
+
+  <div className="mt-5">
+    {file ? (
+      <div
+        className="
+          inline-flex
+          items-center
+          gap-2
+          px-4
+          py-2
+          rounded-full
+          bg-cyan-500/10
+          border
+          border-cyan-500/30
+          text-cyan-300
+        "
+      >
+        📄 {file.name}
+      </div>
+    ) : (
+      <p className="text-slate-500">
+        No file selected
+      </p>
+    )}
+  </div>
+</div>
           <button
             onClick={handleUpload}
             className="
